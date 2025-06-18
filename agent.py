@@ -2,7 +2,6 @@
 # エージェントのクラス
 import random
 from direction import Direction, Turn
-from agent import Agent
 
 
 class Agent:
@@ -28,13 +27,19 @@ class Agent:
         else:
             #前に何かある時曲がる
             self.turn(random.choice([Turn.Left, Turn.Right]))
+
+    def isFrontEmpty(self) -> bool:
+        """Stub to check if the space in front of the agent is empty."""
+        return True
     
     #前に移動
-    def __moveForward(self):
-        (self.x, self.y) += self.direction.getForward()
+    def moveForward(self):
+        dx, dy = self.direction.getForward()
+        self.x += dx
+        self.y += dy
 
     #左右を向く
-    def __turn(self, turn:Turn):
+    def turn(self, turn:Turn):
         self.direction.turn(turn)
     
     ###財のやりとり
